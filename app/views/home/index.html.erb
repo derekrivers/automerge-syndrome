@@ -1,12 +1,82 @@
-<main class="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-6 py-16 text-center">
-  <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-purple">FitnessFormula</p>
-  <h1 class="text-5xl font-bold tracking-tight text-brand-green md:text-7xl">Rails 7 is ready</h1>
-  <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-    Automerge Syndrome is bootstrapped with Rails, TailwindCSS, and a reusable brand palette.
-  </p>
-  <div class="mt-10 flex flex-wrap justify-center gap-3">
-    <span class="rounded-full bg-brand-green px-5 py-2 font-semibold text-white">Green #4CAF50</span>
-    <span class="rounded-full bg-brand-purple px-5 py-2 font-semibold text-white">Purple #7B3F8C</span>
-    <span class="rounded-full bg-brand-gold px-5 py-2 font-semibold text-slate-900">Gold #F5C518</span>
-  </div>
+<%# Pexels hotlinking is temporary for development/reference only. Production videos should be uploaded to DigitalOcean Spaces and swapped into this centralized map. %>
+<% videos = {
+  training: "https://videos.pexels.com/video-files/4761426/4761426-hd_1920_1080_25fps.mp4",
+  classes: "https://videos.pexels.com/video-files/5319759/5319759-hd_1920_1080_25fps.mp4"
+} %>
+
+<main class="overflow-hidden bg-slate-950 text-white">
+  <section id="hero" class="relative isolate min-h-screen px-6 py-8 sm:px-10 lg:px-16">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(76,175,80,0.35),_transparent_32%),radial-gradient(circle_at_bottom_right,_rgba(123,63,140,0.42),_transparent_34%)]"></div>
+    <nav class="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-white/10 px-5 py-3 backdrop-blur">
+      <span class="text-lg font-black tracking-tight text-brand-gold">FitnessFormula</span>
+      <a href="#booking" class="rounded-full bg-brand-green px-5 py-2 text-sm font-bold text-white shadow-lg shadow-brand-green/30 transition hover:bg-brand-green/90">Book a session</a>
+    </nav>
+    <div class="mx-auto grid max-w-7xl items-center gap-12 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
+      <div>
+        <p class="mb-5 inline-flex rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.28em] text-brand-gold">Coaching that compounds</p>
+        <h1 class="max-w-4xl text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">Build strength, confidence, and habits that actually fit your life.</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-200">FitnessFormula blends personal training, energizing group classes, and practical nutrition coaching into one clear path forward.</p>
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+          <a href="#booking" class="rounded-full bg-brand-green px-8 py-4 text-center text-base font-black text-white shadow-xl shadow-brand-green/30 transition hover:-translate-y-0.5 hover:bg-brand-green/90">Book a session</a>
+          <a href="#services" class="rounded-full border border-white/20 px-8 py-4 text-center text-base font-bold text-white transition hover:border-brand-gold hover:text-brand-gold">Explore programs</a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-brand-green/30 via-brand-purple/30 to-brand-gold/20 blur-2xl"></div>
+        <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-3 shadow-2xl backdrop-blur">
+          <video class="aspect-[4/5] w-full rounded-[1.5rem] object-cover" autoplay loop muted playsinline poster="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=1200"><source src="<%= videos[:training] %>" type="video/mp4"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="bg-white px-6 py-24 text-slate-900 sm:px-10 lg:px-16">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-black uppercase tracking-[0.3em] text-brand-purple">Services</p>
+      <div class="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <h2 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">A complete formula for sustainable fitness.</h2>
+        <p class="text-lg leading-8 text-slate-600">Choose one track or combine all three. Every option is designed around smart progression, accountability, and movement you can feel proud of.</p>
+      </div>
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        <article class="rounded-3xl border border-brand-green/20 bg-brand-green/10 p-7"><span class="text-4xl">01</span><h3 class="mt-5 text-2xl font-black text-brand-green">Personal training</h3><p class="mt-3 text-slate-700">Focused coaching, tailored programming, and form feedback that keeps every rep productive.</p></article>
+        <article class="rounded-3xl border border-brand-purple/20 bg-brand-purple/10 p-7"><span class="text-4xl">02</span><h3 class="mt-5 text-2xl font-black text-brand-purple">Group classes</h3><p class="mt-3 text-slate-700">High-energy strength and conditioning sessions that make consistency easier and more fun.</p></article>
+        <article class="rounded-3xl border border-brand-gold/30 bg-brand-gold/10 p-7"><span class="text-4xl">03</span><h3 class="mt-5 text-2xl font-black text-amber-600">Nutrition coaching</h3><p class="mt-3 text-slate-700">Simple habits, meal structure, and recovery guidance without restrictive plans or guesswork.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="personal-training" class="bg-slate-100 px-6 py-24 text-slate-900 sm:px-10 lg:px-16">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
+      <div class="overflow-hidden rounded-[2rem] border-8 border-white shadow-2xl"><img class="h-full w-full object-cover" src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Trainer coaching a client through a strength movement"></div>
+      <div><p class="font-black uppercase tracking-[0.3em] text-brand-green">Personal training</p><h2 class="mt-4 text-4xl font-black tracking-tight sm:text-5xl">Your plan, your pace, expert eyes every step.</h2><p class="mt-6 text-lg leading-8 text-slate-600">Start with a movement screen and goal session, then train with a coach who adapts each block to your schedule, confidence, and recovery.</p><ul class="mt-8 space-y-4 text-slate-700"><li class="rounded-2xl bg-white p-4 shadow-sm">✓ Strength programs calibrated to your current level</li><li class="rounded-2xl bg-white p-4 shadow-sm">✓ Technique cues and progression tracking</li><li class="rounded-2xl bg-white p-4 shadow-sm">✓ Flexible in-studio or hybrid accountability</li></ul></div>
+    </div>
+  </section>
+
+  <section id="group-classes" class="bg-slate-950 px-6 py-24 sm:px-10 lg:px-16">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div><p class="font-black uppercase tracking-[0.3em] text-brand-gold">Group classes</p><h2 class="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl">Show up for the room. Leave stronger for yourself.</h2><p class="mt-6 text-lg leading-8 text-slate-300">Small-group formats keep the coaching personal and the momentum contagious, from beginner-friendly circuits to advanced conditioning.</p><div class="mt-8 grid gap-4 sm:grid-cols-3"><div class="rounded-2xl bg-white/10 p-5"><strong class="text-brand-gold">45 min</strong><p class="mt-2 text-sm text-slate-300">Efficient class blocks</p></div><div class="rounded-2xl bg-white/10 p-5"><strong class="text-brand-gold">12 max</strong><p class="mt-2 text-sm text-slate-300">Coached attendance</p></div><div class="rounded-2xl bg-white/10 p-5"><strong class="text-brand-gold">All levels</strong><p class="mt-2 text-sm text-slate-300">Scalable workouts</p></div></div></div>
+      <div class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-3"><video class="aspect-video w-full rounded-[1.5rem] object-cover" autoplay loop muted playsinline poster="https://images.pexels.com/photos/4662346/pexels-photo-4662346.jpeg?auto=compress&cs=tinysrgb&w=1200"><source src="<%= videos[:classes] %>" type="video/mp4"></video></div>
+    </div>
+  </section>
+
+  <section id="nutrition-coaching" class="bg-white px-6 py-24 text-slate-900 sm:px-10 lg:px-16">
+    <div class="mx-auto max-w-7xl rounded-[2rem] bg-gradient-to-br from-brand-purple to-slate-950 p-8 text-white shadow-2xl sm:p-12 lg:p-16">
+      <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"><div><p class="font-black uppercase tracking-[0.3em] text-brand-gold">Nutrition coaching</p><h2 class="mt-4 text-4xl font-black tracking-tight sm:text-5xl">Fuel that supports real life.</h2></div><div><p class="text-lg leading-8 text-slate-100">No crash plans. We build grocery routines, protein targets, meal timing, and recovery habits you can repeat during busy weeks.</p><div class="mt-8 grid gap-4 sm:grid-cols-2"><p class="rounded-2xl bg-white/10 p-5">Weekly habit check-ins</p><p class="rounded-2xl bg-white/10 p-5">Simple meal frameworks</p><p class="rounded-2xl bg-white/10 p-5">Energy and recovery support</p><p class="rounded-2xl bg-white/10 p-5">Progress without obsession</p></div></div></div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="bg-brand-green/10 px-6 py-24 text-slate-900 sm:px-10 lg:px-16">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-center font-black uppercase tracking-[0.3em] text-brand-purple">Testimonials & social proof</p><h2 class="mx-auto mt-4 max-w-3xl text-center text-4xl font-black tracking-tight sm:text-5xl">Members feel the difference in and out of the gym.</h2>
+      <div class="mt-12 grid gap-5 md:grid-cols-3"><blockquote class="rounded-3xl bg-white p-7 shadow-sm"><p>“I finally understand how to train without burning out. The coaching is specific, kind, and effective.”</p><cite class="mt-6 block font-black text-brand-green">Maya R.</cite></blockquote><blockquote class="rounded-3xl bg-white p-7 shadow-sm"><p>“Group class energy got me consistent for the first time in years. Every session feels welcoming.”</p><cite class="mt-6 block font-black text-brand-purple">Jordan K.</cite></blockquote><blockquote class="rounded-3xl bg-white p-7 shadow-sm"><p>“Nutrition coaching made food simpler. I am stronger, sleeping better, and not tracking every bite.”</p><cite class="mt-6 block font-black text-amber-600">Priya S.</cite></blockquote></div>
+      <div class="mt-10 flex flex-wrap justify-center gap-3 text-sm font-bold text-slate-700"><span class="rounded-full bg-white px-4 py-2">500+ sessions coached</span><span class="rounded-full bg-white px-4 py-2">4.9 member rating</span><span class="rounded-full bg-white px-4 py-2">Beginner-friendly studio</span></div>
+    </div>
+  </section>
+
+  <section id="booking" class="bg-slate-950 px-6 py-24 text-white sm:px-10 lg:px-16">
+    <div class="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-white/10 bg-white/10 p-8 sm:p-12 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:p-16">
+      <div><p class="font-black uppercase tracking-[0.3em] text-brand-gold">Booking & contact</p><h2 class="mt-4 text-4xl font-black tracking-tight sm:text-5xl">Ready to find your formula?</h2><p class="mt-5 text-lg leading-8 text-slate-200">Book a session and we will map your goals, movement history, schedule, and best next step in one friendly intro consult.</p></div>
+      <div class="rounded-3xl bg-white p-6 text-slate-900 shadow-2xl"><a href="mailto:hello@fitnessformula.example?subject=Book%20a%20session" class="block rounded-full bg-brand-green px-8 py-4 text-center text-lg font-black text-white shadow-lg shadow-brand-green/30 transition hover:bg-brand-green/90">Book a session</a><p class="mt-5 text-center text-sm text-slate-600">Prefer email? hello@fitnessformula.example</p><p class="mt-2 text-center text-sm text-slate-600">New client consults available weekdays and Saturdays.</p></div>
+    </div>
+  </section>
 </main>

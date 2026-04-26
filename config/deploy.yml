@@ -1,0 +1,43 @@
+# Kamal deployment configuration for DigitalOcean.
+# Replace every angle-bracket placeholder before deploying. Do not commit real
+# registry passwords, droplet addresses, Rails master keys, or production secrets.
+
+service: "<KAMAL_APP_NAME>"
+
+image: "registry.digitalocean.com/<DO_REGISTRY_NAME>/<DO_IMAGE_NAME>"
+
+servers:
+  web:
+    hosts:
+      - "<DROPLET_IP>"
+
+proxy:
+  ssl: true
+  host: "<PRODUCTION_HOSTNAME>"
+  app_port: 3000
+
+registry:
+  server: registry.digitalocean.com
+  username: "<DO_REGISTRY_USERNAME>"
+  password:
+    - KAMAL_REGISTRY_PASSWORD # export as <DO_REGISTRY_PASSWORD> in the deploy environment
+
+env:
+  clear:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: "true"
+    RAILS_LOG_TO_STDOUT: "true"
+    RAILS_MAX_THREADS: "5"
+  secret:
+    - RAILS_MASTER_KEY # set to the production credentials key, never a real value in this file
+
+builder:
+  arch: amd64
+
+# Persist the Rails SQLite database, Active Storage files, logs, and other runtime
+# files across container replacements on the droplet.
+volumes:
+  - "<KAMAL_APP_NAME>_storage:/rails/storage"
+
+# Keep compiled Rails/Tailwind assets available across zero-downtime deploys.
+asset_path: /rails/public/assets

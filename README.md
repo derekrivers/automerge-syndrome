@@ -56,6 +56,27 @@ Run RuboCop:
 bundle exec rubocop
 ```
 
+## Deployment with Kamal on DigitalOcean
+
+`config/deploy.yml` contains a reviewable Kamal configuration for deploying this Rails app to a DigitalOcean droplet with images stored in DigitalOcean Container Registry. The file intentionally uses placeholders instead of production values or credentials.
+
+Before deploying, replace these placeholders with environment-specific values:
+
+- `<KAMAL_APP_NAME>`: the Kamal service/app name, for example `fitnessformula`.
+- `<DO_REGISTRY_NAME>` and `<DO_IMAGE_NAME>`: the DigitalOcean Container Registry name and image repository.
+- `<DROPLET_IP>`: the target DigitalOcean droplet IP address.
+- `<PRODUCTION_HOSTNAME>`: the hostname Kamal Proxy should terminate SSL for.
+- `<DO_REGISTRY_USERNAME>`: the registry username or token username expected by DigitalOcean.
+
+Provide sensitive values through the deploy environment rather than committing them:
+
+```sh
+export KAMAL_REGISTRY_PASSWORD=<DO_REGISTRY_PASSWORD>
+export RAILS_MASTER_KEY=<PRODUCTION_RAILS_MASTER_KEY>
+```
+
+The Kamal config enables Rails production defaults needed by this app (`RAILS_ENV`, static file serving, stdout logging, and thread count), persists `storage/` for the SQLite production database and uploaded files, and sets `asset_path: /rails/public/assets` so compiled Rails/Tailwind assets remain compatible with production deploys. Run `bin/rails tailwindcss:build` locally when validating asset changes before a deploy.
+
 ## Selected design direction
 
 FitnessFormula is presented as a confident, premium fitness brand with a direct path from interest to action. The page structure uses:

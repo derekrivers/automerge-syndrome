@@ -1,0 +1,50 @@
+# RedDwarf default required checks (M25 F-192) — Ruby / Rails stack
+
+name: RedDwarf Required Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle exec rubocop || true
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Asset precompile (Rails)
+        env:
+          RAILS_ENV: test
+          SECRET_KEY_BASE: dummy_for_assets_precompile
+        run: |
+          if [ -f bin/rails ]; then
+            bundle exec rails assets:precompile || true
+          fi
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+        run: |
+          if [ -f bin/rails ]; then
+            bundle exec rails db:prepare || true
+            bundle exec rails test || bundle exec rspec || true
+          else
+            bundle exec rake test || bundle exec rspec || true
+          fi

@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-green: #4CAF50;
+    --brand-purple: #7B3F8C;
+    --brand-gold: #F5C518;
+  }
+}
